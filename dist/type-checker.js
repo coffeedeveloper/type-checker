@@ -32,29 +32,22 @@
   };
 
   /**
-   * get variable type string
+   * 获取变量类型
    * @function
    * @name getType
-   * @param  {*} v any type variable
-   * @return {string}   type string
+   * @param  {*} v 任意类型的变量
+   * @return {string} 类型的变量（首字母大写）
    */
   tc.getType = function (v) {
     return toString(v).replace('[object ', '').replace(']', '');
   };
 
-  ['String', 'Date', 'Number', 'Function', 'RegExp', 'Null', 'Undefined', 'Object'].map(function (t) {
+  ['String', 'Date', 'Number', 'Function', 'RegExp', 'Null', 'Undefined', 'Object', 'Error'].map(function (t) {
     tc['is' + t] = function (v) {
       return tc.isType(v, t);
     };
   });
 
-  /*
-   * 判断变量是否是数组
-   * @function
-   * @name isArray
-   * @param {*} v 变量
-   * @return {bool} 是否是数组
-   */
   tc.isArray = (function () {
     return 'isArray' in Array ? Array.isArray : function (v) {
       return tc.isType(v, 'Array');

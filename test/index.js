@@ -3,7 +3,7 @@ var should = require('should');
 var tc = require('../dist/type-checker');
 
 var types = [
-  'Object', 'Array', 'Null', 'Undefined',
+  'Object', 'Array', 'Null', 'Undefined', 'Error',
   'Number', 'String', 'Date', 'RegExp', 'Function'
 ];
 
@@ -17,15 +17,16 @@ var values = [
   { name: 'empty string', type: 'String', val: '' },
   { name: 'string', type: 'String', val: 'this is string' },
   { name: 'date', type: 'Date', val: new Date() },
-  { name: 'regexp', type: 'RegExp', val: new RegExp('d') }
+  { name: 'regexp', type: 'RegExp', val: new RegExp('d') },
+  { name: 'error', type: 'Error', val: new Error() }
 ];
 
 types.forEach(function (type) {
-  describe(type + ' check', function () {
+  describe(`${type} check`, function () {
     values.filter(function (t) {
       return t.type === type;
     }).map(function (d) {
-      it(d.name + ' should be true', function () {
+      it(`${d.name} should be true`, function () {
         tc['is'+type](d.val).should.be.true;
       });
     });
@@ -33,7 +34,7 @@ types.forEach(function (type) {
     values.filter(function (t) {
       return t.type !== type;
     }).map(function (d) {
-      it(d.name + ' should be false', function () {
+      it(`${d.name} should be false`, function () {
         tc['is'+type](d.val).should.be.false;
       });
     });

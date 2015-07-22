@@ -1,0 +1,26 @@
+{
+  "name": "type-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "",
+    "dev": "babel lib/main.js --watch --out-file dist/type-checker.js --source-maps --modules umd",
+    "test": "mocha test/index.js --harmony",
+    "report": "mocha test/index.js --harmony -r blanket -R html-cov > coverage.html",
+    "doc": "jsdoc dist/type-checker.js"
+  },
+  "config" : {
+    "blanket": {
+      "pattern": "dist",
+      "data-cover-never": "node_modules"
+    }
+  },
+  "author": "CoffeeDeveloper",
+  "license": "MIT",
+  "devDependencies": {
+    "blanket": "^1.1.7",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}

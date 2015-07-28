@@ -27,7 +27,7 @@ types.forEach(function (type) {
       return t.type === type;
     }).map(function (d) {
       it(`${d.name} should be true`, function () {
-        tc['is'+type](d.val).should.be.true;
+        tc['is'+type](d.val).should.be.true();
       });
     });
 
@@ -35,7 +35,7 @@ types.forEach(function (type) {
       return t.type !== type;
     }).map(function (d) {
       it(`${d.name} should be false`, function () {
-        tc['is'+type](d.val).should.be.false;
+        tc['is'+type](d.val).should.be.false();
       });
     });
   });
